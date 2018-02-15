@@ -1,0 +1,19 @@
+body, html{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+hr{
+    width: 90%;
+    margin: 10px auto;
+    background-color: rgb(236, 236, 236);
+    border: none;
+    height: 1px;
+}
+
+.header{
+    width: 100%;
+    height: 80px;
+    background-color: red;
+}

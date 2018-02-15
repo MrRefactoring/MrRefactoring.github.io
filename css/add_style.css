@@ -1,0 +1,31 @@
+.add_form{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    background-color: rgb(248, 248, 248);
+    border-radius: 15px;
+    display: -webkit-flex; /* Safari */
+    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.submit{
+    margin: 0 auto;
+}
+
+.label{
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    margin: 0 auto;
+    top: 7%;
+    left: 0;
+}
