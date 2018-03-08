@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gauss</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script src="js/consts.js"></script>
+    <script src="js/matrix.js"></script>
+    <script src="js/basic_vars.js"></script>
+    <script src="js/gauss.js"></script>
+    <script src="js/table_generator.js"></script>
+    <script src="js/index.js"></script>
+
+
+</head>
+<body class="grey lighten-4">
+
+        <div class="row form" id="activity">
+            <div class="col s12">
+                <div class="card white">
+                    <div class="card-content">
+                        <span class="card-title">Выберите файл</span>
+                        <span>На вход ожидается размерность матрицы и сама матрица</span>
+                    </div>
+                    <div class="card-content" id="container">
+                       <div class="card-panel drag" id="start">
+                           <span>Перетащите его сюда или выберите вручную</span>
+                           <br>
+                           <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                           <input type="file" accept="text/plain" id="drag">
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>
