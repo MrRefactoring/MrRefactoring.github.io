@@ -2,45 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gauss</title>
+    <title>Метод Гаусса Онлайн</title>
+
+    <link rel="shortcut icon" type="image/png" href="http://www.icons101.com/icon_ico/id_82012/Grapher.ico"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-    <script src="js/const.js"></script>
-    <script src="js/matrix.js"></script>
-    <script src="js/basic.js"></script>
-    <script src="js/gauss.js"></script>
-    <script src="js/generators.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/finals.js"></script>
+    <script src="js/lang.js"></script>
 
+    <script src="js/visual/painter.js"></script>
+    <script src="js/visual/generators.js"></script>
+
+    <script src="js/algorithm/matrix.js"></script>
+    <script src="js/algorithm/basic_variables.js"></script>
+    <script src="js/algorithm/gauss.js"></script>
+
+    <script src="js/index.js"></script>
 
 </head>
 <body class="grey lighten-4">
 
-        <div class="row form" id="activity">
-            <div class="col s12">
-                <div class="card white">
-                    <div class="card-content">
-                        <span class="card-title" id="title">Выберите файл</span>
-                        <span>На вход ожидается размерность матрицы и сама матрица</span>
-                    </div>
-                    <div class="card-content" id="container">
-                       <div class="card-panel drag" id="start">
-                           <span id="description">Перетащите его сюда или выберите вручную</span>
-                           <br>
-                           <a class="btn-floating btn waves-effect waves-light orange"><i class="material-icons">add</i></a>
-                           <input type="file" accept="text/plain" id="drag">
-                       </div>
-                    </div>
-                </div>
+    <div class="row container">
+        <div class="col s12 card white" id="card">
+            <div class="card-content">
+                <span class="card-title" id="title">Выберите файл</span>
+                <span id="description">На вход ожидается размерность матрицы, матрица и базисные пременные (опционально)</span>
+            </div>
+            <div class="card-content">
+                <ul class="collapsible" data-collapsible="expandable" id="content">
+                    <li class="active">
+                        <div class="collapsible-header active">
+                            <i class="material-icons" id="upload">file_upload</i>
+                            Исходная матрица
+                        </div>
+                        <div class="collapsible-body active drag" style="display: block" id="loader">
+                            <span>Перетащите файл сюда или выберите вручную</span>
+                            <br><br>
+                            <a class="btn-floating btn waves-effect waves-light"><i class="material-icons">add</i></a>
+                            <input type="file" accept="text/plain" id="drag">
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
+    </div>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large reload">
+            <i class="large material-icons">replay</i>
+        </a>
+    </div>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-class Basic{
+class BasicVariables{
 
     constructor(data){
         this.basic = [];
@@ -13,26 +13,21 @@ class Basic{
         this.max = parseInt(data[0].split(' ')[1]) - 1;
         this.target = parseInt(data[0].split(' ')[0]);
         data = data.slice(this.target + 1);
-        for (let i = 0; i < this.target; i++) {
-            if (data[i] === undefined) break;
-            if (data[i] <= this.max && this.length() < this.target){
-                this.basic.push(parseInt(data[i]));
-            }
-            else{
-                this.notification('Некоторые базисные переменные заданы неправильно');
-                break;
-            }
-        }
-
+        for (let i = 0; i < this.target; i++)
+            if (data[i] === undefined || !this.add(parseInt(data[i]))) break;
     }
 
     add(index){
+        if (index > this.max){
+            BasicVariables.notification(index_error(index));
+            return false;
+        }
         if (this.length() >= this.target){
-            this.notification('Уже выбрано максимальное количество базисных переменных');
+            BasicVariables.notification(max_error());
             return false;
         }
         if (this.includes(index)){
-            this.notification('Данная переменая уже имеется в списке ограничений');
+            BasicVariables.notification(variable_exist());
             return false;
         }
         this.basic.push(index);
@@ -41,11 +36,11 @@ class Basic{
 
     remove(index){
         if (index > this.max){
-            this.notification('Введенный индекс не валиден');
+            BasicVariables.notification(index_bounded());
             return false;
         }
         if (!this.includes(index)){
-            this.notification('Данная переменая не имеется в списке ограничений');
+            BasicVariables.notification(not_exist());
             return false;
         }
         this.basic = this.basic.slice(0, this.basic.indexOf(index)).concat(this.basic.slice(this.basic.indexOf(index) + 1));
@@ -101,7 +96,7 @@ class Basic{
         return this.basic.includes(variables);
     }
 
-    notification(message){
+    static notification(message){
         Materialize.toast(message, timeout, 'rounded');
     }
 

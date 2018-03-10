@@ -1,7 +1,7 @@
-class GaussianElimination{
+class Gauss{
 
-    constructor(matrix, basics){
-        this.basics = basics;
+    constructor(matrix, basics_vars){
+        this.basics = basics_vars;
         this.matrix = this.basics.sort(matrix);
     }
 

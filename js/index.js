@@ -1,76 +1,97 @@
-$(document).ready(() =>{
+$(document).ready(() => {
 
-    let title = $('#title');
-    let description = $('#description');
-
-    let activity = $('#activity');
-    let card = activity[0].children[0].children[0];
-    function setCardHeight() {
+    function setCardHeight() {  // Метод для динамического изменения высоты основного контейнера
+        let card = $('#card')[0];
         const child = card.children;
         const child1Height = child[0].getBoundingClientRect().height;
         const child2Height = child[1].getBoundingClientRect().height;
         card.style.maxHeight = `${child1Height + child2Height}px`;
     }
-    setCardHeight();
-    let container = $('#container');
-    let start = $('#start');
+
+    function load(data) {
+        let matrix = new Matrix(data);
+        let basic_vars = new BasicVariables(data);
+        let gauss = null;
+        let freeze_change = false;  // При true блокирует изменения в базисных переменных
+
+        if (!matrix.success_read) return;  // Если не удалось корректно считать данные
+
+        $('#upload').text(approved);  // Меняем иконку у первого коллапса
+
+        title.text(basic_title());  // Меняем заголовок
+        description.text(basic_description());  // Меняем описание
+
+        loader.html(table_generation(matrix));  // Выводим введенную матрицу
+        content.append(chips_generation(basic_vars));  // Добавляем коллапс для базисных перменных
+
+        $('.chip').on('click', function (e) {  // При нажатии на чипсы, добавляем базисные переменные
+            let id = parseInt(e.target.innerText.split('x')[1]) - 1;
+            if (!freeze_change && !e.target.classList.contains(color) && basic_vars.add(id)){
+                e.target.classList.toggle(color);
+            } else if (!freeze_change && e.target.classList.contains(color) && basic_vars.remove(id)){
+                e.target.classList.toggle(color);
+            }
+        });
+
+        $('#next').on('click', function () {
+            freeze_change = true;
+
+            $('.chip').css('cursor', 'default');
+            $('.reload').css('opacity', 1);
+            $('#touch').text(check);
+            this.remove();
+
+            gauss = new Gauss(matrix, basic_vars);
+            content.append(`
+            <li class="active">
+                <div class="collapsible-header active">
+                    <i class="material-icons">${work}</i>${result_name()}
+                </div>
+                <div class="collapsible-body active drag" style="display: block">
+                    ${table_generation(gauss.solve())}
+                </div>
+            </li>`);
+
+            // todo сделать еще вывод перменных
+
+            paint();
+            setCardHeight();
+        });
+
+        paint();
+        setCardHeight();
+
+    }
+
+    function error() {
+        Materialize.toast(file_toast(), timeout, 'rounded');
+        setTimeout(() => {
+            location.reload(false);
+        }, timeout);
+    }
+
+    let title = $('#title');
+    let description = $('#description');
+
+    let content = $('#content');
+    let loader = $('#loader');
 
     let drag = $('#drag');
 
     drag.on('change', () => {
-        let file = drag.prop('files')[0];
         let reader = new FileReader();
-        reader.onload = function() {
-            let matrix = new Matrix(this.result);
-            let basic = new Basic(this.result);
 
-            if (!matrix.success) return;  // Если введеные данные не валидны
+        reader.onload = function(){load(this.result)};
+        reader.onerror = function(){error()};
 
-            title.text('Введите базисные перменные');
-            description.text('Если выбраны не все базисные переменные, то они подберутся автоматически');
-
-            start.html(tableGen(matrix, 'Введенная матрица'));
-            start.css('width', '100%');
-            container.append(basicGen(basic));
-
-            let chips = $('#chips');
-            let chip = $('.chip');
-            let freeze = false;
-            chips.css('border-bottom', '0');
-            chips.css('margin', '0');
-            chips.css('min-height', '0');
-
-            setCardHeight();
-            chip.on('click', function(e){
-                if (freeze) return;
-                let id = e.target.innerText.split('x')[1] - 1;
-                if (!e.target.classList.contains('orange') && basic.add(id)){
-                    e.target.classList.toggle('orange');
-                } else if (e.target.classList.contains('orange') && basic.remove(id)){
-                    e.target.classList.toggle('orange');
-                }
-            });
-
-            let next = $('#next');
-
-            next.on('click', function () {
-                next.remove();
-                freeze = true;
-                $('.chip').css('cursor', 'default');
-                let gauss = new GaussianElimination(matrix, basic);
-                container.append(`<div class="card-panel">${tableGen(gauss.solve(), 'Результат')}</div>`);
-                setCardHeight();
-            })
-        };
-        reader.onerror = function() {
-            Materialize.toast('Cannot read file', timeout, 'rounded');
-            setTimeout(() => {
-                location.reload(false);
-            }, timeout)
-        };
-        reader.readAsText(file);
+        reader.readAsText(drag.prop('files')[0])
     });
 
+    $('.reload').on('click', () =>{
+        location.reload(false);
+    });
 
+    paint();
+    setCardHeight();  // Устанавливаем начальную высоту элементов
 
 });

@@ -2,19 +2,19 @@ class Matrix{
 
     constructor(data){
         this.matrix = [];
-        this.success = false;
+        this.success_read = false;
         this.parse(data);
     }
 
     parse(data){
         try {
             data = data.split('\n');
-            let n = data[0].split(' ')[0];
-            let m = data[0].split(' ')[1];
+            let n = parseInt(data[0].split(' ')[0]);
+            let m = parseInt(data[0].split(' ')[1]);
             data = data.slice(1);
 
             if (n >= m){
-                this.error('Метод Гаусса неприменим');
+                this.error(gauss_error());
             }
 
             for (let y = 0; y < n; y++){
@@ -22,12 +22,12 @@ class Matrix{
                 for (let x = 0; x < m; x++){
                     columns[x] = parseInt(columns[x]);
                     if (isNaN(columns[x])){
-                        this.error('Неверный формат данных');
+                        this.error(invalid_format());
                     }
                 }
                 this.matrix.push(columns);
             }
-            this.success = true;
+            this.success_read = true;
         } catch (e){
             this.error(e.toString());
         }
@@ -50,7 +50,7 @@ class Matrix{
     }
 
     error(message){
-        this.success = false;
+        this.success_read = false;
         Materialize.toast(message, timeout, 'rounded');
         setTimeout(() => {
             location.reload(false);

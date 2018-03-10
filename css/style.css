@@ -7,7 +7,7 @@ html, body {
     align-items: center;
 }
 
-.form {
+.container {
     transition-property: top;
     transition-duration: 1s;
     transition-timing-function: ease;
@@ -15,26 +15,14 @@ html, body {
     margin: auto;
 }
 
-.card {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 1s ease;
-}
-
-.card-panel{
-    text-align: center;
-}
-
-.chip{
-    cursor: pointer;
-    user-select: none;
+.reload{
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-timing-function: ease;
+    opacity: 0;
 }
 
 .drag {
-    transition-property: width;
-    transition-duration: 1s;
-    transition-timing-function: ease;
-    width: 70%;
     margin: 0 auto;
     position: relative;
     text-align: center;
@@ -51,4 +39,19 @@ html, body {
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+.card {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease;
+}
+
+.card-panel{
+    text-align: center;
+}
+
+.chip{
+    cursor: pointer;
+    user-select: none;
 }
