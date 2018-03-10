@@ -1,52 +1,60 @@
 class Matrix{
 
     constructor(data){
-        this.matrix = [];  // создаем пустую матрицу
-        this.canShow = true;
-        this.parse(data);  // парсим пришедшие данные
+        this.matrix = [];
+        this.success = false;
+        this.parse(data);
     }
 
     parse(data){
-        let n = parseInt(data.split('\n')[0].split(' ')[0]);  // размерность по y
-        let m = parseInt(data.split('\n')[0].split(' ')[1]);  // размерность по x
-        let rows = data.split('\n').slice(1);  // строки матрицы
+        try {
+            data = data.split('\n');
+            let n = data[0].split(' ')[0];
+            let m = data[0].split(' ')[1];
+            data = data.slice(1);
 
-        if (n >= m){  // если кол-во строк больше или равно кол-ву столбцов
-            this.canShow = false;
-            this.error('Переменных меньше, чем ограничений');
-            return;
-        }
-
-        for (let y = 0; y < n; y++){
-            let columns;
-            try {
-                columns = rows[y].split(' ');  // столбцы в строке с индексом y
-            } catch (e) {
-                this.canShow = false;
-                this.error();
-                return;
+            if (n >= m){
+                this.error('Метод Гаусса неприменим');
             }
 
-            for (let x = 0; x < m; x++){
-                columns[x] = parseInt(columns[x]);
+            for (let y = 0; y < n; y++){
+                let columns = data[y].split(' ').slice(0, m);
+                for (let x = 0; x < m; x++){
+                    columns[x] = parseInt(columns[x]);
+                    if (isNaN(columns[x])){
+                        this.error('Неверный формат данных');
+                    }
+                }
+                this.matrix.push(columns);
             }
-            if (columns.includes(NaN)){  // Если в ходе разбора оказалось так, что размерность не соблюдена
-                this.canShow = false;
-                this.error();  // То говорим пользователю, что он допустил ошибку и перезагружаем страницу
-                return;
-            }
-            this.matrix[y] = columns.slice(0, m);
+            this.success = true;
+        } catch (e){
+            this.error(e.toString());
         }
     }
 
+    getEl(y, x){
+        return this.matrix[y][x];
+    }
+
+    setEl(y, x, value){
+        this.matrix[y][x] = value;
+    }
+
+    rows(){
+        return this.matrix.length;
+    }
+
+    columns(){
+        return this.matrix[0].length;
+    }
+
     error(message){
-        if (message === undefined)
-            Materialize.toast('Неверный формат данных', timeout, 'rounded');
-        else
-            Materialize.toast(message, timeout, 'rounded');
+        this.success = false;
+        Materialize.toast(message, timeout, 'rounded');
         setTimeout(() => {
             location.reload(false);
-        }, timeout);
+        }, timeout)
     }
 
 }

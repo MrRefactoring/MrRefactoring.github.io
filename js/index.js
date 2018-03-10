@@ -1,6 +1,17 @@
 $(document).ready(() =>{
 
+    let title = $('#title');
+    let description = $('#description');
+
     let activity = $('#activity');
+    let card = activity[0].children[0].children[0];
+    function setCardHeight() {
+        const child = card.children;
+        const child1Height = child[0].getBoundingClientRect().height;
+        const child2Height = child[1].getBoundingClientRect().height;
+        card.style.maxHeight = `${child1Height + child2Height}px`;
+    }
+    setCardHeight();
     let container = $('#container');
     let start = $('#start');
 
@@ -11,34 +22,44 @@ $(document).ready(() =>{
         let reader = new FileReader();
         reader.onload = function() {
             let matrix = new Matrix(this.result);
-            let basic = new BasicVariables(this.result);
+            let basic = new Basic(this.result);
 
-            if (matrix.canShow){  // Если введеные данные валидны
-                start.html(generateTable(matrix));
-                activity.css('top', '-70%');
-                start.css('width', '100%');
-            } else {
-                return;
-            }
-            container.append(generateBasics(basic));
+            if (!matrix.success) return;  // Если введеные данные не валидны
+
+            title.text('Введите базисные перменные');
+            description.text('Если выбраны не все базисные переменные, то они подберутся автоматически');
+
+            start.html(tableGen(matrix, 'Введенная матрица'));
+            start.css('width', '100%');
+            container.append(basicGen(basic));
 
             let chips = $('#chips');
+            let chip = $('.chip');
+            let freeze = false;
             chips.css('border-bottom', '0');
             chips.css('margin', '0');
             chips.css('min-height', '0');
 
-            // Todo
-            //chips.material_chip();
-            chips.on('chip.select', function(e, chip){
-                console.log('HHEE');
+            setCardHeight();
+            chip.on('click', function(e){
+                if (freeze) return;
+                let id = e.target.innerText.split('x')[1] - 1;
+                if (!e.target.classList.contains('orange') && basic.add(id)){
+                    e.target.classList.toggle('orange');
+                } else if (e.target.classList.contains('orange') && basic.remove(id)){
+                    e.target.classList.toggle('orange');
+                }
             });
 
             let next = $('#next');
 
             next.on('click', function () {
-                next.html();
+                next.remove();
+                freeze = true;
+                $('.chip').css('cursor', 'default');
                 let gauss = new GaussianElimination(matrix, basic);
-                container.append(result(gauss.solve()));
+                container.append(`<div class="card-panel">${tableGen(gauss.solve(), 'Результат')}</div>`);
+                setCardHeight();
             })
         };
         reader.onerror = function() {
