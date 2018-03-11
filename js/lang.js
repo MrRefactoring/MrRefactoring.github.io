@@ -99,3 +99,17 @@ function select_text() {
         case 'ru': return 'Перетащите файл сюда или выберите вручную';
     }
 }
+
+function start_title() {
+    switch (lang){
+        default: return 'Select file';
+        case 'ru': return 'Выберите файл';
+    }
+}
+
+function start_description() {
+    switch (lang){
+        default: return 'The input is expected to be the dimension of the matrix, matrix and basic variables (optional)';
+        case 'ru': return 'На вход ожидается размерность матрицы, матрица и базисные переменные (опционально)';
+    }
+}
