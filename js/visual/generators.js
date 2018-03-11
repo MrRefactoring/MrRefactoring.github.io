@@ -9,7 +9,11 @@ function table_generation(matrix) {
     for (let y = 0; y < matrix.rows(); y++){
         body += '<tr>';
         for (let x = 0; x < matrix.columns(); x++){
-            body += `<td>${matrix.getEl(y, x)}</td>`;
+            if (matrix.getEl(y, x).toString().split('.').length > 1 && matrix.getEl(y, x).toString().split('.')[1].length >= 3){
+                body += `<td>${matrix.getEl(y, x).toFixed(2)}</td>`;
+            } else {
+                body += `<td>${matrix.getEl(y, x)}</td>`;
+            }
         }
         body += '</tr>';
     }

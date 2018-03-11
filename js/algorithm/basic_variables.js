@@ -96,6 +96,19 @@ class BasicVariables{
         return this.basic.includes(variables);
     }
 
+    // фича. нормально писать не буду так как фича
+    replace(index){
+        if (this.movement[index] !== undefined){
+            return parseInt(this.movement[index]);
+        }
+        for (let key in this.movement){
+            if (this.movement[key] === index){
+                return parseInt(key);
+            }
+        }
+        return index;
+    }
+
     static notification(message){
         Materialize.toast(message, timeout, 'rounded');
     }

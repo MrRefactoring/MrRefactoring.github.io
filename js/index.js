@@ -52,7 +52,20 @@ $(document).ready(() => {
                 </div>
             </li>`);
 
-            // todo сделать еще вывод перменных
+            content.append(`
+            <li class="active">
+            <div class="collapsible-header active">
+                    <i class="material-icons">${vpn}</i>${vars_name()}
+            </div>
+            <div class="collapsible-body active drag" style="display: block">
+                ${gauss.variables()}
+            </div>
+            </li>
+            `);
+            gauss.variables();
+
+            title.text(result_name());
+            description.text(result_desc());
 
             paint();
             setCardHeight();

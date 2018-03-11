@@ -3,9 +3,12 @@
 */
 
 function paint() {
+
+    $('.collapsible-header').addClass('grey lighten-5');
+
     $('.btn-floating').addClass(color);
     $('.striped').addClass(color);
     $('.COLORMARKER').addClass(color);
+
     $('.COLORMARKER').removeClass('COLORMARKER');
-    $('.collapsible-header').addClass('grey lighten-5');
 }

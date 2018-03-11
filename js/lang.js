@@ -37,6 +37,13 @@ function result_name() {
     }
 }
 
+function result_desc() {
+    switch (lang){
+        default: return 'Resulting matrix and expressed variables';
+        case 'ru': return 'Результирующая матрица и выраженные переменные';
+    }
+}
+
 function invalid_format() {
     switch (lang){
         default: return 'Invalid data format';
@@ -111,5 +118,12 @@ function start_description() {
     switch (lang){
         default: return 'The input is expected to be the dimension of the matrix, matrix and basic variables (optional)';
         case 'ru': return 'На вход ожидается размерность матрицы, матрица и базисные переменные (опционально)';
+    }
+}
+
+function vars_name() {
+    switch (lang){
+        default: return 'Variables';
+        case 'ru': return 'Переменные';
     }
 }

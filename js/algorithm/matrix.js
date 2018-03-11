@@ -34,7 +34,7 @@ class Matrix{
     }
 
     getEl(y, x){
-        return this.matrix[y][x];
+        return parseFloat(this.matrix[y][x]);
     }
 
     setEl(y, x, value){
