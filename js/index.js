@@ -91,6 +91,9 @@ $(document).ready(() => {
         location.reload(false);
     });
 
+    $('#select_text').text(select_text());
+    $('#source').text(matrix_text());
+
     paint();
     setCardHeight();  // Устанавливаем начальную высоту элементов
 

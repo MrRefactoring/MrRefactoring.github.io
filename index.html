@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Метод Гаусса Онлайн</title>
 
-    <link rel="shortcut icon" type="image/png" href="http://www.icons101.com/icon_ico/id_82012/Grapher.ico"/>
+    <link rel="shortcut icon" type="image/png" href="icon/icon.ico" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -40,10 +40,10 @@
                     <li class="active">
                         <div class="collapsible-header active">
                             <i class="material-icons" id="upload">file_upload</i>
-                            Исходная матрица
+                            <span id="source"></span>
                         </div>
                         <div class="collapsible-body active drag" style="display: block" id="loader">
-                            <span>Перетащите файл сюда или выберите вручную</span>
+                            <span id="select_text"></span>
                             <br><br>
                             <a class="btn-floating btn waves-effect waves-light"><i class="material-icons">add</i></a>
                             <input type="file" accept="text/plain" id="drag">

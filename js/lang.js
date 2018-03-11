@@ -85,3 +85,17 @@ function not_exist() {
         case 'ru': return 'Данная переменная не имеется в списке ограничений';
     }
 }
+
+function matrix_text() {
+    switch (lang){
+        default: return 'Initial matrix';
+        case 'ru': return 'Исходная матрица';
+    }
+}
+
+function select_text() {
+    switch (lang){
+        default: return 'Drag the file here or select manually';
+        case 'ru': return 'Перетащите файл сюда или выберите вручную';
+    }
+}
