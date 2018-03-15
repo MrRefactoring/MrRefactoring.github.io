@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script src="js/finals.js"></script>
+    <script src="js/sender.js"></script>
+    <script src="js/index.js"></script>
+
+</head>
+<body class="grey lighten-4">
+    <div class="row container">
+        <div class="col s12">
+            <div class="card">
+                <div class="card-image">
+                    <img src="content/images/default_photo.jpg" id="photo">
+                    <span class="card-title black-text">Фотография</span>
+                    <div>
+                        <a class="btn-floating halfway-fab waves-effect waves-light absolute">
+                            <i class="material-icons" style="cursor: pointer">attach_file</i>
+                            <input type="file" accept="image/*" id="load" class="absolute select">
+                        </a>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <form>
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">face</i>
+                                    <input id="first_name" type="text" class="validate" data-length="20">
+                                    <label for="first_name">Имя</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="last_name" type="text" class="validate" data-length="20">
+                                    <label for="last_name">Фамилия</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">today</i>
+                                    <input type="text" id="birthday" class="datepicker">
+                                    <label for="birthday">День рождения</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row col s12">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">email</i>
+                                        <input id="email" type="email" class="validate">
+                                        <label for="email" data-error="Неверно" data-success="Верно">Email</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <div class="col s12">
+                                    <i class="material-icons prefix">edit</i>
+                                    <textarea id="about" class="materialize-textarea" data-length="300"></textarea>
+                                    <label for="about">О себе</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 send">
+                                <input type="checkbox" class="filled-in" id="accept" />
+                                <label for="accept">Даю согласие на обработку моих персональных данных</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 send">
+                                <a class="btn-floating btn-large waves-effect waves-light disabled" id="send">
+                                    <i class="material-icons">send</i>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
