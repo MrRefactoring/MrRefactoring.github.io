@@ -12,9 +12,7 @@ $(document).ready(() => {
         let right = Fraction($('#right').text());  // Справа от опорного
         let bottom = Fraction($('#bottom').text());  // Снизу от опорного
 
-        result.text(support_element.mul(rb_support).sub(right.mul(bottom)).toFraction());
-
-
+        result.text((support_element.mul(rb_support).sub(right.mul(bottom))).div(support_element).toFraction());
 
     });
 
