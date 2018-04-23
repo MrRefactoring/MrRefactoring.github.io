@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notation</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="js/index.js"></script>
+
+</head>
+<body class="grey lighten-4">
+
+    <div class="row min">
+        <div class="col s12 white card">
+            <div class="row padding">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">input</i>
+                    <input id="source_number" type="text" class="validate">
+                    <label for="source_number">Число для перевода</label>
+                </div>
+            </div>
+            <div class="row padding">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">file_download</i>
+                    <input id="source_notation" type="text" class="validate">
+                    <label for="source_notation">Исходная система счисления</label>
+                </div>
+            </div>
+            <div class="row padding">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">file_upload</i>
+                    <input id="target_notation" type="text" class="validate">
+                    <label for="target_notation">Желаемая система счисления</label>
+                </div>
+            </div>
+            <div class="center padding">
+                <a id="update" class="btn-floating btn-large waves-effect waves-light red">
+                    <i class="material-icons">cached</i>
+                </a>
+            </div>
+
+            <div class="row center padding">
+                <span id="result"></span>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
