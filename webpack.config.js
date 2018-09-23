@@ -1,3 +1,4 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
@@ -29,6 +30,7 @@ module.exports = env => {
     resolve: {
       alias: {
         api: path.resolve(__dirname, './src/api'),
+        assets: path.resolve(__dirname, './src/assets'),
         store: path.resolve(__dirname, './src/store')
       }
     },
@@ -63,6 +65,12 @@ module.exports = env => {
       ]
     },
     plugins: [
+      new CopyWebpackPlugin([
+        {
+          from: './src/assets/favicon.ico',
+          to: './'
+        }
+      ]),
       new HtmlWebpackPlugin({
         alwaysWriteToDisk: true,
         template: './src/index.html',
