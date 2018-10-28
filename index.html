@@ -25,15 +25,15 @@
       <div class="col-xs-12">
         <div class="location">
           <i class="icofont-location-pin"></i>
-          <a href="#"><span>Ленинградский проспект, 43А, Ярославль</span></a>
+          <a target="_blank" rel="noopener" href="https://goo.gl/maps/PW3FD5eA1b62"><span>Ленинградский проспект, 43А, Ярославль</span></a>
         </div>
         <div class="phone">
           <i class="icofont-phone"></i>
-          <a href="#"><span>+7 (4852) 55-35-75</span></a>
+          <a href="tel:+7 (4852) 55-35-75"><span>+7 (4852) 55-35-75</span></a>
         </div>
         <div class="email">
           <i class="icofont-ui-message"></i>
-          <a href="#"><span>stkmotor@mail.ru</span></a>
+          <a href="mailto:stkmotor@mail.ru"><span>stkmotor@mail.ru</span></a>
         </div>
         <div class="time">
           <i class="icofont-clock-time"></i>
@@ -53,15 +53,43 @@
   </div>
 </div>
 
-<header class="header">
-
+<header id="header-area" class="header sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="logo">
+          <button>
+            <i class="icofont-navigation-menu"></i>
+          </button>
+          <img src="/assets/favicon-safari.svg?a41ae1084be674273de08b31c9298315" alt="Автошкола СТК Мотор"/>
+        </div>
+        <div class="menu smooth-scroll">
+          <nav>
+            <ul>
+              <li class="active"><a href="#header-area">Главная</a></li>
+              <li class=""><a href="#features-area">Преимущества</a></li>
+              <li class=""><a href="#course-area">Обучение</a></li>
+              <li class=""><a href="#gallery-area">Галерея</a></li>
+              <li class=""><a href="#instructor-area">Инструкторы</a></li>
+              <li class=""><a href="#pricing-area">Цены</a></li>
+              <li class=""><a href="#contact-area">Контакты</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
-<div class="features">
+<div class="header-content">
+
+</div>
+
+<div id="features-area" class="features">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 title-section">
-        <h3 class="title">Наши преимущества</h3>
+        <h3 class="title">Почему стоит выбрать нашу автошколу</h3>
         <div class="subtitle">
           Lorem ipsum dolor sit amet, consectetur maksu rez do eiusmod tempor magna aliqua
         </div>
@@ -93,7 +121,7 @@
         </div>
       </div>
       <div class="features-center col-md-4 col-xs-12">
-        <img src="https://d29u17ylf1ylz9.cloudfront.net/driveon-preview/driveon-light/img/feature.png">
+        <img src="https://d29u17ylf1ylz9.cloudfront.net/driveon-preview/driveon-light/img/feature.png" alt="Преимущества">
       </div>
       <div class="features-right col-md-4 col-xs-12">
         <div class="single-feature">
@@ -136,6 +164,8 @@
 
 
 <script src="./scripts/toggle.js"></script>
+<script src="./scripts/headerScroll.js"></script>
+<script src="./scripts/smoothScroll.js"></script>
 
 
 </body>
